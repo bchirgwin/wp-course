@@ -12,7 +12,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   btn.appendChild(document.createTextNode('Click Me'));
   btn.addEventListener('click', (e) => {
     // By default Events bubble up the DOM tree
-    // e.stopPropagation(); // stop Event Bubbling
+    e.stopPropagation(); // stop Event Bubbling
     console.log('button clicked');
   });
   document.body.addEventListener('click', () => console.log('body clicked'));

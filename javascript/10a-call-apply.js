@@ -26,7 +26,6 @@ const sayName2 = p2.sayName;
 
 // sayHello(); // this keyword is not p1, but windows
 // sayName2();
-
 sayName.call(p1);
 sayName.call(p2); // call sayName with p2
 sayName.call({ name: 'Jane', age: 23 }); // call with Person like object
