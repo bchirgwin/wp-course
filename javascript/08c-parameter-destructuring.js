@@ -40,3 +40,4 @@ function getName({ name, description }) {
   return name + ' : ' + description;
 }
 console.log(getName(blackBeans));
+console.log({ name: 'Eggs' });

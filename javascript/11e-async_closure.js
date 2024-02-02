@@ -48,11 +48,11 @@
 // use let
 // let creates a new binding for every iteration of the loop
 
-for (let i = 0; i < 10; i++) {
-  setTimeout(function () {
-    console.log(i);
-  }, 500);
-}
+// for (let i = 0; i < 10; i++) {
+//   setTimeout(function () {
+//     console.log(i);
+//   }, 500);
+// }
 
 // create a named function in which the name can give context
 // The named function is our closure

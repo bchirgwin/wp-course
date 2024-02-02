@@ -13,14 +13,14 @@ function Person(name, email) {
   this.name = name;
   this.email = email;
 
-  function displayName() {
+  this.displayName = function () {
     console.log(this.name);
-  }
+  };
 }
 
 function displayNames() {
-  console.log(john);
-  console.log(jane);
+  john.displayName();
+  jane.displayName();
 }
 
 let john = new Person('Brian', 'b@email.com');
