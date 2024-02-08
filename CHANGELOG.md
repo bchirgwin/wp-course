@@ -2,6 +2,27 @@
 
 This file contains what changed in releases.
 
+## 2024-02-08 Update
+        new file:   javascript/web-component/Person2Component.js
+        new file:   javascript/web-component/PersonComponent.js
+        new file:   javascript/web-component/hello-world-component.js
+        new file:   javascript/web-component/index.html
+        new file:   slides/day-07.pptx
+        new file:   typescript/index.ts
+        new file:   typescript/package-lock.json
+        new file:   typescript/package.json
+
+## 2024-02-01 Upatae
+        modified:   javascript/06a-this.js
+        modified:   javascript/06c2-object-function-prototype.js
+        modified:   javascript/08c-parameter-destructuring.js
+        modified:   javascript/09a-template-literals.js
+        modified:   javascript/10a-call-apply.js
+        modified:   javascript/11e-async_closure.js
+        modified:   javascript/12a-main.js
+        new file:   javascript/13a-class.js
+        new file:   slides/day-06.pptx
+
 ## 2024-01-30 Update 
 
   README.md (modified)

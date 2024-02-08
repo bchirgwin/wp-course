@@ -1,0 +1,43 @@
+.flex {
+  display: flex;
+  column-gap: 40px;
+  flex-grow: 1;
+}
+
+* {
+  font-size: 26px;
+}
+
+.box #p1 {
+  color: white;
+}
+
+#p1 {
+  color: red;
+}
+
+.blue {
+  color: blue;
+}
+
+.large {
+  color: green;
+  font-size: 36px;
+}
+
+.box {
+  border: 2px solid red;
+}
+
+p {
+  color: yellow;
+  background-color: grey;
+}
+
+/* div {
+  color: pink;
+} */
+
+/* p {
+  color: pink;
+} */

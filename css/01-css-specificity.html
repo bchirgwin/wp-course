@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="01-css-specificity.css"
+    />
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td style="width: 150px">Inline Styles</td>
+        <td style="width: 150px">ID Selectors</td>
+        <td style="width: 300px">
+          Class Selector<br />Pseudo-classes selectors<br />
+          Attributes Selectors
+        </td>
+        <td style="width: 300px">
+          Element Selectors<br />
+          Elements<br />
+          Pseudo-Elements
+        </td>
+      </tr>
+      <tr>
+        <td><input type="text" /></td>
+        <td><input type="text" /></td>
+        <td><input type="text" /></td>
+        <td><input type="text" /></td>
+      </tr>
+    </table>
+
+    <div>
+      <p id="p1">ID Selector</p>
+    </div>
+
+    <div>
+      <p class="blue">Class Selector</p>
+    </div>
+
+    <div>
+      <p>Element Selector</p>
+    </div>
+
+    <div class="box">
+      <div class="input">
+        <p id="p1" class="blue">Which color am I?</p>
+      </div>
+      <div class="input">
+        <p class="blue large">Which color am I?</p>
+      </div>
+    </div>
+  </body>
+</html>
