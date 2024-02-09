@@ -13,7 +13,7 @@ create a package.json
 
 ```sh
 mdir js-proj
-cd js-dir
+cd js-proj
 npm init
 ```
 
