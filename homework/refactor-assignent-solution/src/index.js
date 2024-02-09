@@ -1,35 +1,35 @@
 'use strict';
 
-function isWinner(b, c) {
-  if (b[0][0] === c && b[0][1] === c && b[0][2] === c) {
+function isWinner(board, c) {
+  if (board[0][0] === c && board[0][1] === c && board[0][2] === c) {
     return true;
   }
 
-  if (b[1][0] === c && b[1][1] === c && b[1][2] === c) {
+  if (board[1][0] === c && board[1][1] === c && board[1][2] === c) {
     return true;
   }
 
-  if (b[2][0] === c && b[2][1] === c && b[2][2] === c) {
+  if (board[2][0] === c && board[2][1] === c && board[2][2] === c) {
     return true;
   }
 
-  if (b[0][0] === c && b[1][0] === c && b[2][0] === c) {
+  if (board[0][0] === c && board[1][0] === c && board[2][0] === c) {
     return true;
   }
 
-  if (b[0][1] === c && b[1][1] === c && b[2][1] === c) {
+  if (board[0][1] === c && board[1][1] === c && board[2][1] === c) {
     return true;
   }
 
-  if (b[0][2] === c && b[1][2] === c && b[2][2] === c) {
+  if (board[0][2] === c && board[1][2] === c && board[2][2] === c) {
     return true;
   }
 
-  if (b[0][0] === c && b[1][1] === c && b[2][2] === c) {
+  if (board[0][0] === c && board[1][1] === c && board[2][2] === c) {
     return true;
   }
 
-  if (b[0][2] === c && b[1][1] === c && b[2][0] === c) {
+  if (board[0][2] === c && board[1][1] === c && board[2][0] === c) {
     return true;
   }
 
