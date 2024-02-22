@@ -131,3 +131,6 @@ dist
 
 # editor
 .vscode
+
+# angular 
+.angular
