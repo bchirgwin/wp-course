@@ -19,5 +19,11 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  rules: {},
+  rules: {
+    "no-console": 0,
+    "import/prefer-default-export": [
+      "off",
+      { target: "single" }, // default is "single"
+    ],
+  },
 };
