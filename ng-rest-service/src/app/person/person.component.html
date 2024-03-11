@@ -1,0 +1,7 @@
+<h1>Person {{ personId }}</h1>
+
+<div *ngIf="person$ | async as person">
+  <pre>
+    {{ person | json }}
+  </pre>
+</div>
