@@ -14,6 +14,10 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server');
 });
 
+app.get('/api/helloworld', (req: Request, res: Response) => {
+  res.send('Hello World');
+});
+
 app.get('/api/people/:id', (req: Request, res: Response) => {
   const id = parseInt(req.params.id, 10);
   const person = people[id];
