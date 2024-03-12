@@ -1,24 +1,22 @@
 'use strict';
 
-const EMPTY = 0;
-const PLAYER1 = 1;
-const PLAYER2 = 2;
+const EMPTY = ' ';
+const PLAYER1 = 'X';
+const PLAYER2 = 'O';
 
 function isWinner(board, player) {
-  function checkWin([x1, y1], [x2, y2], [x3, y3]) {
-    return board[x1][y1] === player && board[x2][y2] === player && board[x3][y3] === player;
-  }
+  const checkWin = (positions) => positions.every((p) => p === player);
 
-  return (
-    checkWin([0, 0], [0, 1], [0, 2]) ||
-    checkWin([1, 0], [1, 1], [1, 2]) ||
-    checkWin([2, 0], [2, 1], [2, 2]) ||
-    checkWin([0, 0], [1, 0], [2, 0]) ||
-    checkWin([0, 1], [1, 1], [2, 1]) ||
-    checkWin([0, 2], [1, 2], [2, 2]) ||
-    checkWin([0, 0], [1, 1], [2, 2]) ||
-    checkWin([0, 2], [1, 1], [2, 0])
-  );
+  const rows = [0, 1, 2].map((row) => [...board[row]]);
+
+  const cols = [0, 1, 2].map((col) => board.map((row) => row[col]));
+
+  const diagonalTLBR = [0, 1, 2].map((i) => board[i][i]);
+  const diagonalTRBL = [0, 1, 2].map((i) => board[i][2 - i]);
+
+  const diagonalWin = checkWin(diagonalTLBR) || checkWin(diagonalTRBL);
+
+  return rows.some((row) => checkWin(row)) || cols.some((col) => checkWin(col)) || diagonalWin;
 }
 
 console.log(
