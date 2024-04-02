@@ -1,0 +1,5 @@
+[
+  { "id": 1, "name": "Take out trash", "completed": false },
+  { "id": 2, "name": "Take out recycling", "completed": false },
+  { "id": 3, "name": "pick up dog food", "completed": true }
+]
