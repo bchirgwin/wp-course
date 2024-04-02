@@ -35,14 +35,10 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.get('/api/todos', (req: Request, res: Response) => {
-  const id = parseInt(req.params.id, 10);
-
   res.send(todos);
 });
 
 app.get('/api/todos-auth', authenticateToken, (req: Request, res: Response) => {
-  const id = parseInt(req.params.id, 10);
-
   res.send(todos);
 });
 
