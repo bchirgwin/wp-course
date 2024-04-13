@@ -1,0 +1,22 @@
+* {
+  font-size: 24px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.complete {
+  text-decoration: line-through;
+}
+
+li .small {
+  font-size: 9px;
+  margin-left: 10px;
+}
+
+li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
