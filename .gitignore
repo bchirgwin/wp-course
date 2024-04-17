@@ -134,3 +134,6 @@ dist
 
 # angular 
 .angular
+
+# nextjs
+next-env.d.ts

@@ -1,0 +1,9 @@
+<div *ngIf="edit(); else view">
+  <input type="text>" [(ngModel)]="todo.title" />
+</div>
+
+<ng-template #view>
+  <p>{{ todo.id }} {{ todo.title }}</p>
+</ng-template>
+
+<button (click)="toggleEdit()">{{ edit() ? "Save" : "Edit" }}</button>
