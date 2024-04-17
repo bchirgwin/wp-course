@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { AsyncPipe, NgFor } from '@angular/common';
 
+import { ToDo } from '../todo';
 import { TodoComponent } from '../todo/todo.component';
-import { ToDo, TodoMockService } from '../todo-mock.service';
-import { Observable, from } from 'rxjs';
+import { Observable } from 'rxjs';
+import { TodoService } from '../todo.service';
 
 @Component({
   selector: 'app-todos',
@@ -15,7 +16,7 @@ import { Observable, from } from 'rxjs';
 export class TodosComponent {
   todos$: Observable<ToDo[]>;
 
-  constructor(private todoService: TodoMockService) {
+  constructor(private todoService: TodoService) {
     this.todos$ = this.todoService.getTodos();
   }
 

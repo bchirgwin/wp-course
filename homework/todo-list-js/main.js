@@ -1,11 +1,5 @@
 const apiUrl = 'http://localhost:3000/api';
 
-// function addNewTodo(list, todo) {
-//   const newItem = document.createElement('li');
-//   newItem.innerHTML = `<li> <input type="checkbox" onclick="handleClickTodo(${todo.id}))"/>${todo}</li>`;
-//   list.appendChild(newItem);
-// }
-
 window.addEventListener('DOMContentLoaded', (event) => {
   renderTodos();
 });

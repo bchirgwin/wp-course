@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-
-export interface ToDo {
-  id: number;
-  title: string;
-  completed: boolean;
-}
+import { ToDo } from './todo';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +15,7 @@ export class TodoMockService {
   constructor() {}
 
   getTodos(): Observable<ToDo[]> {
+    console.log('MockTodos');
     return of(this.todos);
   }
 
