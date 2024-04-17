@@ -1,6 +1,6 @@
 import { Component, Input, signal } from '@angular/core';
 import { NgIf, NgTemplateOutlet } from '@angular/common';
-import { ToDo } from '../todo-mock.service';
+import { ToDo } from '../todo';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -12,7 +12,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class TodoComponent {
   edit = signal(false);
-  @Input() todo: ToDo = { id: 0, title: '', completed: false };
+  @Input() todo: ToDo = { id: 0, name: '', completed: false };
+
   toggleEdit() {
     this.edit.set(!this.edit());
   }
