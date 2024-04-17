@@ -18,7 +18,6 @@ function handleClickTodo(e, id) {
 
   const listItem = document.querySelector(`li[id="${id}"]`);
   const item = listItem.querySelector('input');
-  console.log(item);
   const name = item.nextSibling.nodeValue;
   const completed = item.checked == 1;
 
@@ -28,11 +27,6 @@ function handleClickTodo(e, id) {
     completed: completed,
   };
   putTodo(todo);
-  // if (e.target.checked == 1 && li) {
-  //   li.classList.add('complete');
-  // } else {
-  //   li.classList.remove('complete');
-  // }
 }
 
 function handleUncheckAll(e) {
@@ -65,7 +59,6 @@ function checkAll(checked) {
 function deleteChecked() {
   let inputs = document.querySelectorAll('.complete');
   inputs.forEach((input) => {
-    // console.log(input.parentElement);
     input.parentElement.removeChild(input);
   });
 }
@@ -78,11 +71,10 @@ async function getTodos() {
 
 async function renderTodos() {
   const todos = await getTodos();
-  // console.log(todos);
 
   const list = document.getElementById('todos');
   list.innerHTML = '';
-  console.log(todos, todos.length);
+
   for (let i = 0; i < todos.length; i++) {
     renderTodo(list, todos[i]);
   }
@@ -92,9 +84,9 @@ function renderTodo(list, todo) {
   const newItem = document.createElement('li');
   newItem.id = todo.id;
   if (todo.completed) {
-    console.log('add class');
     newItem.className = 'complete';
   }
+
   newItem.innerHTML = `<input type="checkbox" onclick="handleClickTodo(event, ${todo.id})" ${
     todo.completed ? 'checked' : ''
   }/>${todo.name} <button class="small" <button class="small" onclick=deleteTodo(${todo.id})>DEL</button>`;
@@ -116,7 +108,6 @@ async function postTodo(todo) {
 }
 
 async function putTodo(todo) {
-  console.log(todo);
   const response = await fetch(`${apiUrl}/todos/${todo.id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
