@@ -4,7 +4,7 @@ import cors from 'cors';
 import * as jwt from 'jsonwebtoken';
 
 import { Todo } from './todo';
-import Todos from './mock-todos.json';
+import { CreateUser, hashPswd, validatePassword } from './users';
 
 declare module 'jsonwebtoken' {
   export interface JwtPayload {
@@ -25,13 +25,19 @@ import mysql from 'mysql2/promise';
 dotenv.config();
 import { DBOptions } from './db.conf';
 
-let todos: Todo[] = Todos;
-
 const app: Express = express();
 app.use(cors());
 app.use(express.json());
 
 const port = process.env.PORT || 3000;
+
+CreateUser('XXX2', 'password1234')
+  .then((result) => console.log('DONE'))
+  .catch((err) => console.log(err));
+
+validatePassword('XXX2', 'password1234').then((result) => console.log(result));
+
+validatePassword('XXX2', 'invalid-password').then((result) => console.log(result));
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server');
@@ -40,21 +46,29 @@ app.get('/', (req: Request, res: Response) => {
 app.get('/api/todos', async (req: Request, res: Response) => {
   const dbConn = await mysql.createConnection(DBOptions as any);
 
-  const [results, fields] = await dbConn.query('SELECT id, name, completed FROM todos');
+  const [results] = await dbConn.query('SELECT id, name, completed FROM todos');
+  dbConn.end();
 
   console.log(results);
   res.send(results);
 });
 
-app.get('/api/todos-auth', authenticateToken, (req: Request, res: Response) => {
-  res.send(todos);
+app.get('/api/todos-auth', authenticateToken, async (req: Request, res: Response) => {
+  const dbConn = await mysql.createConnection(DBOptions as any);
+
+  const [results] = await dbConn.query('SELECT id, name, completed FROM todos');
+  dbConn.end();
+
+  console.log(results);
+  res.send(results);
 });
 
 app.get('/api/todos/:id', async (req: Request, res: Response) => {
   const id = parseInt(req.params.id, 10);
 
   const dbConn = await mysql.createConnection(DBOptions as any);
-  const [results, fields] = await dbConn.query('SELECT id, name, completed FROM todos WHERE id = ?', [id]);
+  const [results] = await dbConn.query('SELECT id, name, completed FROM todos WHERE id = ?', [id]);
+  dbConn.end();
 
   res.send(results);
 });
@@ -64,10 +78,11 @@ app.post('/api/todos', async (req: Request, res: Response) => {
 
   const dbConn = await mysql.createConnection(DBOptions as any);
 
-  const [results, fields] = await dbConn.query(
+  const [results] = await dbConn.query(
     'INSERT INTO todos SET id = (SELECT MAX(id)+1 FROM todos as t1), name = ?, completed = ?',
     [todo.name, todo.completed]
   );
+  dbConn.end();
 
   res.send(results);
 });
@@ -82,6 +97,7 @@ app.put('/api/todos/:id', async (req: Request, res: Response) => {
     todo.completed,
     todo.id,
   ]);
+  dbConn.end();
 
   res.send(results);
 });
@@ -91,40 +107,26 @@ app.delete('/api/todos/:id', async (req: Request, res: Response) => {
 
   const dbConn = await mysql.createConnection(DBOptions as any);
   const [result] = await dbConn.query('DELETE FROM todos WHERE id = ?', [id]);
+  dbConn.end();
 
-  // todos = todos.filter((todo: Todo) => todo.id != id);
-  res.send(todos);
+  res.send(result);
 });
 
-app.post('/api/login', (req: Request, res: Response) => {
+app.post('/api/login', async (req: Request, res: Response) => {
   const username = req.body.username;
 
-  const token = genAccessToken(username);
-  res.json(token);
+  const valid = await validatePassword(username, req.body.password);
+  if (valid) {
+    const token = genAccessToken(username);
+    res.json({ token });
+    return;
+  }
+  res.sendStatus(401);
 });
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
 });
-
-async function dbConnect(): Promise<mysql.Connection> {
-  const dbConn = await mysql.createConnection(DBOptions as any);
-
-  await dbConn
-    .connect()
-    .then(() => console.log('connected'))
-    .catch((err: Error) => console.log(err));
-
-  try {
-    const [results, fields] = await dbConn.query('SELECT * FROM todos');
-    console.log(results);
-    console.log(fields);
-    return dbConn;
-  } catch (err) {
-    return Promise.reject(null);
-    console.log(err);
-  }
-}
 
 function genAccessToken(username: string) {
   return jwt.sign({ userId: username }, process.env.TOKEN_SECRET as jwt.Secret, {

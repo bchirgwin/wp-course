@@ -2,7 +2,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-console.log();
 export const DBOptions = {
   host: process.env.DB_HOST,
   user: process.env.DB_USER,

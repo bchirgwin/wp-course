@@ -17,3 +17,13 @@ VALUES
  (2, 'Take out trash', FALSE),
  (3, 'Take out recycling', FALSE);
 
+CREATE TABLE users (
+  id int not null, 
+  username varchar(30) not null,
+  pswd varchar(255) not null
+);
+
+INSERT INTO `users` (`id`, `username`, `pswd`) 
+VALUES ( 1, 'bchirgwin', '$2a$10$anpXHsiGYCvR7i1hI7RsQOmX63T5rGN.nKp3ts5BsXqqJP.JVcWky'),
+( 2, 'admin', '$2a$10$rLQxCJmyK3MK6TFgNA4S9u.seHX/wQS3/kQNznUloI4Ski8QsWRyO');
+
