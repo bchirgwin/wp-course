@@ -64,7 +64,14 @@ function deleteChecked() {
 }
 
 async function getTodos() {
-  const response = await fetch(`${apiUrl}/todos`);
+  const token = getAuthToken();
+  const response = await fetch(`${apiUrl}/todos-auth`, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token.token}`,
+    },
+  });
+
   const todos = await response.json();
   return todos;
 }
@@ -115,4 +122,32 @@ async function putTodo(todo) {
   });
 
   renderTodos();
+}
+
+async function handleLogin() {
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+
+  const response = await fetch(`${apiUrl}/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, password }),
+  });
+
+  const token = await response.json();
+
+  setAuthToken(token);
+  renderTodos();
+}
+
+function getAuthToken() {
+  return JSON.parse(sessionStorage.getItem('auth'));
+}
+
+function setAuthToken(token) {
+  sessionStorage.setItem('auth', JSON.stringify(token));
+}
+
+function clearToken() {
+  sessionStorage.removeItem('auth');
 }
